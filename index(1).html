@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IIT Patna — ERP Portal</title>
+<style>
+:root{--navy:#102a43;--blue:#1769aa;--light:#f4f7fb;--white:#fff;--text:#243b53;--muted:#718096;--green:#16825d;--orange:#d97706;--red:#c53030;--border:#e2e8f0}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--light);color:var(--text)}
+button,input,select{font:inherit}.app{display:flex;min-height:100vh}.sidebar{width:250px;background:var(--navy);color:white;position:fixed;inset:0 auto 0 0;padding:20px 14px;z-index:10}.brand{display:flex;gap:11px;align-items:center;padding:8px 10px 24px;border-bottom:1px solid #ffffff1c}.logo{width:44px;height:44px;border-radius:12px;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:900}.brand strong{display:block;font-size:15px}.brand span{font-size:11px;color:#c9d6e4}.nav{padding-top:18px}.nav button{width:100%;border:0;background:transparent;color:#dce7f1;text-align:left;padding:12px 13px;border-radius:9px;margin:3px 0;cursor:pointer}.nav button:hover,.nav button.active{background:#ffffff16;color:white}.nav button span{display:inline-block;width:25px}.logout{position:absolute;bottom:20px;left:14px;right:14px}.main{margin-left:250px;width:calc(100% - 250px)}.topbar{height:74px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:5}.search{border:1px solid var(--border);border-radius:10px;padding:10px 13px;width:280px;outline:none}.user{display:flex;align-items:center;gap:12px}.avatar{width:38px;height:38px;border-radius:50%;background:#dbeafe;display:grid;place-items:center;color:#1e40af;font-weight:800}.content{padding:30px;max-width:1500px;margin:auto}.page{display:none}.page.active{display:block}.welcome{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.welcome h1{margin:0 0 5px;font-size:27px}.welcome p{margin:0;color:var(--muted)}.date{background:#fff;border:1px solid var(--border);padding:10px 14px;border-radius:10px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:19px}.stat{display:flex;justify-content:space-between}.stat h3{margin:10px 0 4px;font-size:26px}.label{color:var(--muted);font-size:13px}.icon{width:40px;height:40px;border-radius:10px;background:#e8f1fb;display:grid;place-items:center}.grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px;margin-top:18px}.section{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px}.section h2{font-size:17px;margin:0 0 17px}.table{width:100%;border-collapse:collapse;font-size:13px}.table th,.table td{padding:12px 10px;text-align:left;border-bottom:1px solid #edf2f7}.table th{color:var(--muted);font-weight:600}.badge{padding:5px 9px;border-radius:99px;font-size:11px;font-weight:700}.green{background:#def7ec;color:var(--green)}.orange{background:#fff4d6;color:var(--orange)}.red{background:#fde8e8;color:var(--red)}.notice{padding:12px 0;border-bottom:1px solid #edf2f7}.notice:last-child{border:0}.notice strong{font-size:13px}.notice small{display:block;color:var(--muted);margin-top:4px}.progress{height:7px;background:#edf2f7;border-radius:99px;overflow:hidden}.bar{height:100%;background:var(--blue);border-radius:99px}.subject{margin-bottom:16px}.subject-top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px}.profile{display:grid;grid-template-columns:260px 1fr;gap:18px}.profile-card{text-align:center}.profile-pic{width:100px;height:100px;border-radius:50%;background:#dbeafe;margin:5px auto 12px;display:grid;place-items:center;font-size:35px;font-weight:800;color:#1e40af}.details{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.detail{border:1px solid var(--border);border-radius:10px;padding:13px}.detail small{display:block;color:var(--muted);margin-bottom:5px}.toolbar{display:flex;gap:10px;margin-bottom:15px}.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:#fff;cursor:pointer}.btn.secondary{background:#edf2f7;color:var(--text)}.login{min-height:100vh;display:none;align-items:center;justify-content:center;background:linear-gradient(135deg,#102a43,#1769aa);padding:20px}.login-box{background:white;width:400px;max-width:100%;padding:35px;border-radius:18px;box-shadow:0 20px 60px #0003}.login-box h1{margin:0}.login-box p{color:var(--muted)}.field{margin:15px 0}.field label{font-size:13px;font-weight:600;display:block;margin-bottom:7px}.field input,.field select{width:100%;padding:12px;border:1px solid var(--border);border-radius:9px;outline:none}.login-box .btn{width:100%;margin-top:8px}.hint{text-align:center;font-size:12px;color:var(--muted);margin-top:15px}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.sidebar{width:210px}.main{margin-left:210px;width:calc(100% - 210px)}}
+@media(max-width:700px){.sidebar{position:fixed;width:70px;padding:12px 8px}.brand div:not(.logo),.nav button span:last-child,.logout{display:none}.brand{padding:5px 5px 15px}.nav button{text-align:center}.main{margin-left:70px;width:calc(100% - 70px)}.topbar{padding:0 15px}.search{width:150px}.content{padding:18px}.cards{grid-template-columns:1fr}.profile{grid-template-columns:1fr}.details{grid-template-columns:1fr}.welcome{align-items:flex-start;gap:10px}.date{display:none}}
+</style>
+</head>
+<body>
+
+<div id="login" class="login">
+  <div class="login-box">
+    <div style="font-size:34px">🎓</div>
+    <h1>IIT Patna ERP</h1>
+    <p>Student & Academic Management Portal</p>
+    <div class="field"><label>Enrollment ID</label><input id="loginId" placeholder="e.g. 2401CS01"></div>
+    <div class="field"><label>Password</label><input id="loginPass" type="password" placeholder="Enter password"></div>
+    <button class="btn" onclick="login()">Sign In</button>
+    <div class="hint">Demo: 2401CS01 / 123456</div>
+  </div>
+</div>
+
+<div id="app" class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">IITP</div><div><strong>IIT PATNA</strong><span>ERP PORTAL</span></div></div>
+  <nav class="nav">
+    <button class="active" onclick="showPage('dashboard',this)"><span>⌂</span>Dashboard</button>
+    <button onclick="showPage('profile',this)"><span>👤</span>My Profile</button>
+    <button onclick="showPage('courses',this)"><span>📚</span>Courses</button>
+    <button onclick="showPage('attendance',this)"><span>✓</span>Attendance</button>
+    <button onclick="showPage('results',this)"><span>📊</span>Results</button>
+    <button onclick="showPage('fees',this)"><span>₹</span>Fees</button>
+    <button onclick="showPage('timetable',this)"><span>🗓</span>Timetable</button>
+    <button onclick="showPage('notices',this)"><span>🔔</span>Notices</button>
+  </nav>
+  <button class="nav logout" onclick="logout()">↪ &nbsp; Logout</button>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <input class="search" placeholder="Search ERP..." oninput="searchTable(this.value)">
+  <div class="user"><div><strong id="userName">Satyam Kumar</strong><small style="display:block;color:#718096">B.Tech • CSE</small></div><div class="avatar">SK</div></div>
+</header>
+
+<div class="content">
+<section id="dashboard" class="page active">
+  <div class="welcome"><div><h1>Good morning, Satyam 👋</h1><p>Here’s your academic overview for the current semester.</p></div><div class="date">21 September 2026</div></div>
+  <div class="cards">
+    <div class="card stat"><div><span class="label">CGPA</span><h3>8.42</h3><span class="badge green">↑ 0.18</span></div><div class="icon">🎓</div></div>
+    <div class="card stat"><div><span class="label">Attendance</span><h3>87.6%</h3><span class="badge green">Good</span></div><div class="icon">✓</div></div>
+    <div class="card stat"><div><span class="label">Credits</span><h3>72</h3><span class="label">of 160 completed</span></div><div class="icon">📚</div></div>
+    <div class="card stat"><div><span class="label">Pending Fees</span><h3>₹12,500</h3><span class="badge orange">Due 30 Sep</span></div><div class="icon">₹</div></div>
+  </div>
+  <div class="grid">
+    <div class="section"><h2>Attendance Overview</h2>
+      <div class="subject"><div class="subject-top"><span>Data Structures</span><b>92%</b></div><div class="progress"><div class="bar" style="width:92%"></div></div></div>
+      <div class="subject"><div class="subject-top"><span>Operating Systems</span><b>86%</b></div><div class="progress"><div class="bar" style="width:86%"></div></div></div>
+      <div class="subject"><div class="subject-top"><span>Database Management</span><b>90%</b></div><div class="progress"><div class="bar" style="width:90%"></div></div></div>
+      <div class="subject"><div class="subject-top"><span>Computer Networks</span><b>78%</b></div><div class="progress"><div class="bar" style="width:78%"></div></div></div>
+    </div>
+    <div class="section"><h2>Latest Notices</h2>
+      <div class="notice"><strong>Mid-Semester Examination Schedule</strong><small>Academic Section • 20 Sep 2026</small></div>
+      <div class="notice"><strong>Hostel Fee Payment Reminder</strong><small>Accounts • 18 Sep 2026</small></div>
+      <div class="notice"><strong>Library Orientation Program</strong><small>Library • 16 Sep 2026</small></div>
+      <div class="notice"><strong>Student Council Meeting</strong><small>Student Affairs • 14 Sep 2026</small></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:18px"><h2>Today's Schedule</h2><table class="table searchable"><thead><tr><th>Time</th><th>Subject</th><th>Faculty</th><th>Room</th><th>Status</th></tr></thead><tbody>
+    <tr><td>09:00 – 10:00</td><td>Data Structures</td><td>Dr. A. Kumar</td><td>LT-2</td><td><span class="badge green">Completed</span></td></tr>
+    <tr><td>10:15 – 11:15</td><td>Operating Systems</td><td>Dr. R. Singh</td><td>LT-1</td><td><span class="badge green">Completed</span></td></tr>
+    <tr><td>12:00 – 13:00</td><td>DBMS Lab</td><td>Prof. P. Sharma</td><td>Lab-3</td><td><span class="badge orange">Upcoming</span></td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="profile" class="page"><div class="welcome"><div><h1>My Profile</h1><p>Personal and academic information.</p></div></div>
+<div class="profile"><div class="section profile-card"><div class="profile-pic">SK</div><h2 style="margin:0">Satyam Kumar</h2><p style="color:#718096">B.Tech Computer Science & Engineering</p><span class="badge green">Active Student</span></div>
+<div class="section"><h2>Student Information</h2><div class="details">
+<div class="detail"><small>Enrollment ID</small><b>2401CS01</b></div><div class="detail"><small>Program</small><b>B.Tech CSE</b></div><div class="detail"><small>Batch</small><b>2024 – 2028</b></div><div class="detail"><small>Semester</small><b>5th Semester</b></div><div class="detail"><small>Email</small><b>satyam@example.com</b></div><div class="detail"><small>Academic Advisor</small><b>Dr. A. Kumar</b></div></div></div></div></section>
+
+<section id="courses" class="page"><div class="welcome"><div><h1>My Courses</h1><p>Registered courses for Semester V.</p></div><button class="btn" onclick="alert('Course registration window is currently closed.')">+ Register Course</button></div>
+<div class="section"><table class="table searchable"><thead><tr><th>Code</th><th>Course</th><th>Type</th><th>Credits</th><th>Faculty</th><th>Status</th></tr></thead><tbody>
+<tr><td>CS301</td><td>Data Structures & Algorithms</td><td>Core</td><td>4</td><td>Dr. A. Kumar</td><td><span class="badge green">Enrolled</span></td></tr>
+<tr><td>CS302</td><td>Operating Systems</td><td>Core</td><td>4</td><td>Dr. R. Singh</td><td><span class="badge green">Enrolled</span></td></tr>
+<tr><td>CS303</td><td>Database Management Systems</td><td>Core</td><td>4</td><td>Prof. P. Sharma</td><td><span class="badge green">Enrolled</span></td></tr>
+<tr><td>CS304</td><td>Computer Networks</td><td>Core</td><td>4</td><td>Dr. N. Verma</td><td><span class="badge green">Enrolled</span></td></tr>
+<tr><td>HS201</td><td>Professional Communication</td><td>HSS</td><td>3</td><td>Dr. M. Roy</td><td><span class="badge green">Enrolled</span></td></tr>
+</tbody></table></div></section>
+
+<section id="attendance" class="page"><div class="welcome"><div><h1>Attendance</h1><p>Subject-wise attendance record.</p></div></div>
+<div class="cards"><div class="card"><span class="label">Overall Attendance</span><h3>87.6%</h3><span class="badge green">Eligible</span></div><div class="card"><span class="label">Classes Attended</span><h3>127</h3></div><div class="card"><span class="label">Classes Held</span><h3>145</h3></div><div class="card"><span class="label">Shortage</span><h3>0</h3></div></div>
+<div class="section" style="margin-top:18px"><table class="table searchable"><thead><tr><th>Course</th><th>Held</th><th>Present</th><th>Absent</th><th>Attendance</th></tr></thead><tbody>
+<tr><td>Data Structures</td><td>37</td><td>34</td><td>3</td><td><span class="badge green">91.9%</span></td></tr><tr><td>Operating Systems</td><td>35</td><td>30</td><td>5</td><td><span class="badge green">85.7%</span></td></tr><tr><td>DBMS</td><td>31</td><td>28</td><td>3</td><td><span class="badge green">90.3%</span></td></tr><tr><td>Computer Networks</td><td>32</td><td>25</td><td>7</td><td><span class="badge orange">78.1%</span></td></tr></tbody></table></div></section>
+
+<section id="results" class="page"><div class="welcome"><div><h1>Results</h1><p>Academic performance and semester grades.</p></div></div>
+<div class="section"><table class="table searchable"><thead><tr><th>Semester</th><th>SGPA</th><th>Credits</th><th>Result</th><th>Marksheet</th></tr></thead><tbody>
+<tr><td>Semester I</td><td>8.10</td><td>20</td><td><span class="badge green">PASS</span></td><td><button class="btn secondary" onclick="alert('Demo marksheet download')">View</button></td></tr>
+<tr><td>Semester II</td><td>8.35</td><td>22</td><td><span class="badge green">PASS</span></td><td><button class="btn secondary" onclick="alert('Demo marksheet download')">View</button></td></tr>
+<tr><td>Semester III</td><td>8.52</td><td>18</td><td><span class="badge green">PASS</span></td><td><button class="btn secondary" onclick="alert('Demo marksheet download')">View</button></td></tr>
+<tr><td>Semester IV</td><td>8.70</td><td>20</td><td><span class="badge green">PASS</span></td><td><button class="btn secondary" onclick="alert('Demo marksheet download')">View</button></td></tr>
+</tbody></table></div></section>
+
+<section id="fees" class="page"><div class="welcome"><div><h1>Fees & Payments</h1><p>View dues and payment history.</p></div><button class="btn" onclick="alert('Demo payment gateway')">Pay Now</button></div>
+<div class="cards"><div class="card"><span class="label">Total Due</span><h3>₹12,500</h3><span class="badge orange">Pending</span></div><div class="card"><span class="label">Paid This Year</span><h3>₹1,48,000</h3></div></div>
+<div class="section" style="margin-top:18px"><table class="table searchable"><thead><tr><th>Invoice</th><th>Fee Type</th><th>Amount</th><th>Due Date</th><th>Status</th></tr></thead><tbody>
+<tr><td>INV-2026-091</td><td>Semester Fee</td><td>₹10,000</td><td>30 Sep 2026</td><td><span class="badge orange">Pending</span></td></tr>
+<tr><td>INV-2026-092</td><td>Hostel Fee</td><td>₹2,500</td><td>30 Sep 2026</td><td><span class="badge orange">Pending</span></td></tr>
+<tr><td>INV-2026-051</td><td>Semester Fee</td><td>₹45,000</td><td>30 Apr 2026</td><td><span class="badge green">Paid</span></td></tr>
+</tbody></table></div></section>
+
+<section id="timetable" class="page"><div class="welcome"><div><h1>Timetable</h1><p>Weekly class schedule.</p></div></div>
+<div class="section"><table class="table searchable"><thead><tr><th>Day</th><th>09:00–10:00</th><th>10:15–11:15</th><th>12:00–13:00</th><th>14:00–15:00</th></tr></thead><tbody>
+<tr><td>Monday</td><td>DSA</td><td>OS</td><td>DBMS Lab</td><td>—</td></tr><tr><td>Tuesday</td><td>CN</td><td>DSA</td><td>Communication</td><td>OS Lab</td></tr><tr><td>Wednesday</td><td>OS</td><td>CN</td><td>DBMS</td><td>—</td></tr><tr><td>Thursday</td><td>DSA</td><td>DBMS</td><td>CN Lab</td><td>Communication</td></tr><tr><td>Friday</td><td>CN</td><td>OS</td><td>DSA</td><td>DBMS</td></tr></tbody></table></div></section>
+
+<section id="notices" class="page"><div class="welcome"><div><h1>Notices & Announcements</h1><p>Important updates from IIT Patna.</p></div></div>
+<div class="section"><div class="notice"><strong>Mid-Semester Examination Schedule Released</strong><small>Academic Section • 20 September 2026</small><p>Students are requested to check the examination timetable and report any discrepancy to the academic office.</p></div>
+<div class="notice"><strong>Hostel Fee Payment Reminder</strong><small>Accounts Section • 18 September 2026</small><p>Semester hostel dues should be cleared by the due date.</p></div>
+<div class="notice"><strong>Library Orientation Program</strong><small>Central Library • 16 September 2026</small><p>New students can register for the orientation program through the library portal.</p></div>
+<div class="notice"><strong>Student Council Meeting</strong><small>Student Affairs • 14 September 2026</small><p>Representatives are requested to attend the scheduled meeting.</p></div></div></section>
+</div>
+</main>
+</div>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+function showPage(id,btn){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');}
+function login(){const id=document.getElementById('loginId').value,pass=document.getElementById('loginPass').value;if(id==='2401CS01'&&pass==='123456'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='flex';}else alert('Invalid demo credentials. Use 2401CS01 / 123456');}
+function logout(){document.getElementById('app').style.display='none';document.getElementById('login').style.display='flex';}
+function searchTable(q){q=q.toLowerCase();document.querySelectorAll('.searchable tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q)?'':'none');}
+</script>
+</body>
+</html>
